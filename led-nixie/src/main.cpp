@@ -1,7 +1,20 @@
-#include <Arduino.h>
+#include <main.h>
 
 void setup() {
-  // put your setup code here, to run once:
+  #ifdef DEBUGSERIAL
+		Serial.begin(115200);
+	#endif
+	LOG("setup")
+
+  pinMode(PixelPin, OUTPUT);
+
+	Strip.Begin();
+
+	delay(1000);
+
+	if (! myRtc.begin()) {
+    LOG("RTC erroro")
+  }
 }
 
 void loop() {
